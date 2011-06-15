@@ -32,4 +32,9 @@
     </init-param>
   </servlet>
   
+  <servlet-mapping>
+    <servlet-name>ControllerServlet</servlet-name>
+    <url-pattern>/query_database</url-pattern>
+  </servlet-mapping>
+  
 </web-app>
