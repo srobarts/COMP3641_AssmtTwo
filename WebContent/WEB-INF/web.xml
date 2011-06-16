@@ -37,4 +37,75 @@
     <url-pattern>/query_database</url-pattern>
   </servlet-mapping>
   
+  <context-param>
+    <param-name>qmessage</param-name>
+    <param-value>Here is the result of your query:</param-value>
+  </context-param>
+  <context-param>
+    <param-name>imessage</param-name>
+    <param-value>Record inserted successfully:</param-value>
+  </context-param>
+  <context-param>
+    <param-name>updatemessage</param-name>
+    <param-value>Record updated successfully:</param-value>
+  </context-param>
+  <context-param>
+    <param-name>deletemessage</param-name>
+    <param-value>Record deleted successfully:</param-value>
+  </context-param>
+  <context-param>
+    <param-name>refreshmessage</param-name>
+    <param-value>Application will return to start page in 5 seconds</param-value>
+  </context-param>
+  
+  <login-config>
+    	<auth-method>FORM</auth-method>
+    	<form-login-config>
+      		<form-login-page>/admin/login.jsp</form-login-page>
+      		<form-error-page>/admin/login-error.jsp</form-error-page>
+    	</form-login-config>
+  	</login-config>
+  	
+  	<security-role>
+  		<role-name>user</role-name>
+  	</security-role>
+  	<security-role>
+    	<role-name>admin</role-name>
+  	</security-role>
+	
+	<!-- Unprotected resources -->
+	<security-constraint>
+    	<web-resource-collection>
+      		<web-resource-name>Unprotected</web-resource-name>
+      		<url-pattern>/jsp-unprotected/*</url-pattern>
+    	</web-resource-collection>
+    	<auth-constraint>
+      		<role-name>user</role-name>
+      		<role-name>admin</role-name>
+    	</auth-constraint>
+  	</security-constraint>
+	
+	<!-- Resources only available to admin and user -->
+	<security-constraint>
+    	<web-resource-collection>
+      		<web-resource-name>User</web-resource-name>
+      		<url-pattern>/jsp-user/*</url-pattern>
+    	</web-resource-collection>
+    	<auth-constraint>
+      		<role-name>user</role-name>
+      		<role-name>admin</role-name>
+    	</auth-constraint>
+  	</security-constraint>	
+  	
+  	<!-- Resources only available to admin -->
+  	<security-constraint>
+    	<web-resource-collection>
+      		<web-resource-name>Admin</web-resource-name>
+      		<url-pattern>/jsp-admin/*</url-pattern>
+    	</web-resource-collection>
+    	<auth-constraint>
+      		<role-name>admin</role-name>
+    	</auth-constraint>
+  	</security-constraint>
+  
 </web-app>
