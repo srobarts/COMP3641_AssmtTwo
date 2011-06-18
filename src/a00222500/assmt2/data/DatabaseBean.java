@@ -130,6 +130,97 @@ public class DatabaseBean {
 	{
 		queryResults = rs;
 	}
+	
+	public String create_table_query()
+	{
+		//Since this function is pretty specific to this address book it is not
+		//a generic create table function where I pass in table names and
+		//column names.  If you need to change the table then the code has
+		//to change - but if you're changing the database that is pretty major
+		//anyway under most circumstances.
+		String query = 	"IF NOT EXISTS (SELECT * FROM sysobjects WHERE name='a00222500_Members' and xtype='U') CREATE TABLE a00222500_Members " +
+						"( memberID	INT IDENTITY(1,1), " +
+						"firstName	VARCHAR(255) NOT NULL, " +
+						"lastName VARCHAR(255) NOT NULL, " +
+						"address VARCHAR(255) NOT NULL, " +
+						"city VARCHAR(255) NOT NULL, " +
+						"country VARCHAR(255) NOT NULL, " +
+						"code CHAR(255) NOT NULL, " +
+						"phoneNumber CHAR(255) NOT NULL, " +
+						"email VARCHAR(255) NOT NULL) ";
+		
+		return query;
+	}
+	
+	public void create_table(String create_table_query)
+	{
+		try {
+			stmt = con.createStatement();
+			stmt.execute(create_table_query);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public void insertRecord(String query) {
+		try {
+			stmt = con.createStatement();
+			stmt.execute(query);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void updateRecord(int id, String firstName, String lastName, String address, 
+			String city, String country, String code, String phoneNumber, String email) {
+			
+			//create update statement
+			try {
+				stmt = con.createStatement();
+				String update_query = "UPDATE a00222500_Members" +
+									" SET firstName = '" + firstName + "'" + 
+									", lastName = '" + lastName + "'" +
+									", address = '" + address + "'" +
+									", city = '" + city + "'" +
+									", country = '" + country + "'" +
+									", code = '" + code + "'" +
+									", phoneNumber = '" + phoneNumber + "'" +
+									", email = '" + email + "'" +
+									" WHERE memberID = " + id;
+				System.out.println(update_query);
+				stmt.executeUpdate(update_query);
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}	
+	}
+	
+	public void deleteRecord(int memberID) {
+		try {
+			stmt = con.createStatement();
+			stmt.executeUpdate("DELETE FROM a00222500_Members WHERE memberID = " + memberID);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	public int getMaxID() {
+		ResultSet rs = null;
+		int maxID = 0;
+		try {
+			stmt = con.createStatement();
+			rs = stmt.executeQuery("SELECT * FROM a00222500_Members WHERE MemberID = (SELECT MAX( MemberID ) FROM a00222500_Members)");
+			while(rs.next()) {
+				maxID = rs.getInt("memberID");
+				System.out.println("bean");
+				System.out.println(maxID);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return maxID;
+	}
 
 	public void cleanUp()
 	{

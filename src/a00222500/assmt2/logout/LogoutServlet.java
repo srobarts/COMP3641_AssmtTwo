@@ -1,4 +1,4 @@
-package a00222500.assmt2.servlet;
+package a00222500.assmt2.logout;
 
 import java.io.IOException;
 import javax.servlet.ServletException;

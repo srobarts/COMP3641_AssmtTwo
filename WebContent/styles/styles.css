@@ -1,0 +1,426 @@
+@CHARSET "UTF-8";
+
+html, body{
+	font-family:"Lucida Grande", "Lucida Sans Unicode", Verdana, Arial, Helvetica, sans-serif;
+	background-color:#eee;
+	font-size:12px;
+	margin: 0;
+    padding: 0;
+}
+
+p, h1, form, button{border:0; margin:0; padding:0;}
+
+.spacer{clear:both; height:1px;}
+
+#content p.bigredtext {
+	font-size:1.2em;
+	font-weight:bold;
+}
+
+#content p.linktext {
+	font-size:1.5em;
+	font-weight:bold;
+}
+
+a {
+	text-decoration:none;
+	color:#777;
+}
+		
+a:hover {
+	color:#A60000;
+	text-decoration:underline;
+	}
+	
+
+/* ----------- Wrapper -----------*/
+#wrapper {
+	width:750px;
+	margin:0 auto;
+	width:1000px;
+	text-align:left;
+	background-color:#fff;
+	text-align:left;
+	border-left:1px solid #ccc;
+	border-right:1px solid #ccc;
+}
+
+
+/* ----------- Header ------------ */
+#header {
+	background-color: #FFFFFF;
+    height: 150px;
+    padding-top: 10px;
+    text-align: center;
+    width: 100%;
+}
+
+hr {
+	width:50%;
+	color:#b7ddf2;
+}
+
+h1 {
+	font-size:18px;
+	font-weight:bold;
+	margin-bottom:8px;
+}
+
+img.header_image {
+	padding-left:0px;
+}
+
+.header_text {
+	font-size:48px;
+	font-weight:bold;
+	color:#A60000;
+}
+
+/* ---------- Content ------------ */
+
+#content {
+	float:left;
+	width:90%;
+	padding-top:5px;
+	padding-left:15px;
+	padding-right:15px;
+}
+
+#content h1 {
+	font-size:28px;
+	color:#555;
+}
+
+#content p {
+	font-size:14px;
+	color:#333;
+}
+
+#content ul {
+	list-style-type:none;
+}
+
+#content ul li {
+	font-size:16px;
+	color:#333;
+	padding:4px;
+}
+
+#centered_div {
+	position:relative;
+	text-align:center;
+}
+
+#left_float {
+	float:left;
+	width:50%;
+}
+
+#right_float {
+	float:right;
+	width:50%;
+}
+
+/* ---------- Home Content ------- */
+
+#homecontent {
+	float:left;
+	width:90%;
+	padding-top:5px;
+	padding-left:150px;
+	padding-right:15px;
+}
+
+
+
+/* ---------- Error Output -------- */
+
+#error_output {
+	float:left;
+	display:block; 
+	overflow:visible;
+	left:40px;
+	width:95%;
+}
+
+/* ---------- Tables ------------ */
+
+table, th, td {
+	table-layout:fixed;
+	border:1px solid #777;
+	border-collapse:collapse;
+}
+
+#tablecontent {
+    padding-bottom: 30px;
+    padding-top: 10px;
+    position: relative;
+    text-align: left;
+    width: 100%;
+}
+
+#tablecontent th {
+	background-color:#777;
+	color:#FFF;
+	height:20px;
+	padding:5px;
+	font-size:1.2em;
+}
+
+#tablecontent td {
+	padding:5px;
+}
+
+/* -------- Footer --------------- */
+
+.clearing {clear:both;height:1px;overflow:hidden;}
+
+
+#footer {	
+	clear:both;
+	background-color: #777777;
+    border: 1px solid #777777;
+    color: #EFEFEF;
+    height: 75px;
+    padding-top: 10px;
+    text-align: center;
+}
+
+#footer_links {
+	padding-bottom:8px;
+}
+
+#footer_links a {
+	color:#eee;
+	font-size:1.4em;
+}
+
+#footer_links a:hover {
+	color:navy;
+}
+
+#spacer {
+	height:10px;
+	width:100%;
+}
+
+
+/* ----------- My Form ----------- */
+.myform {
+	margin:0 auto;
+	width:500px;
+	padding:14px;
+	position:relative;
+	/* top:20px; */
+}
+
+#radioblock {
+	float: left;
+    height: 80px;
+    width: 500px;
+}
+
+#tabblock {
+    color: navy;
+    float: left;
+    font-size: 1.3em;
+    font-weight: bold;
+    height: 40px;
+    text-align: right;
+    width: 970px;
+}
+
+/* ----------- stylized ----------- */
+
+#stylized {
+	border:solid 2px #b7ddf2;
+	background:#ebf4fb;
+}
+
+#stylized h1 {
+	font-size:14px;
+	font-weight:bold;
+	margin-bottom:8px;
+}
+
+#stylized p{
+	font-size:13px;
+	color:#666666;
+	margin-bottom:20px;
+	border-bottom:solid 1px #b7ddf2;
+	padding-bottom:10px;
+}
+
+#stylized label{
+	display:block;
+	font-weight:bold;
+	text-align:left;
+	width:140px;
+	float:left;
+}
+
+#stylized .small{
+	color:#666666;
+	display:block;
+	font-size:12px;
+	font-weight:normal;
+	text-align:left;
+	width:340px;
+}
+
+#stylized input{
+	float:left;
+	font-size:12px;
+	padding:4px 2px;
+	border:solid 1px #aacfe4;
+	width:370px;
+	margin:2px 0 20px 10px;
+}
+
+#radioblock input{
+	float:left;
+	font-size:12px;
+	padding:4px;
+	border:none;
+	width:50px;
+	margin:0 0 0 0;
+}
+
+
+#stylized button{
+	clear:both;
+	margin-left:150px;
+	width:125px;
+	height:31px;
+	background:#666666 url(img/button.png) no-repeat;
+	text-align:center;
+	line-height:31px;
+	color:#FFFFFF;
+	font-size:11px;
+	font-weight:bold;
+}
+
+#tabblock button{
+	clear:both;
+	width:90px;
+	height:20px;
+	background:#666666 url(img/button.png) no-repeat;
+	text-align:center;
+	line-height:20px;
+	color:#FFFFFF;
+	font-size:11px;
+	font-weight:bold;
+}
+
+#tablecontent button{
+	clear:both;
+	width:70px;
+	height:20px;
+	background:#666666 url(img/button.png) no-repeat;
+	text-align:center;
+	line-height:31px;
+	color:#FFFFFF;
+	font-size:11px;
+	font-weight:bold;
+}
+
+/* ------- queryinput ------ */
+
+form#two {
+	background:	url(cssplay/bg.png) center top no-repeat;
+	width:469px; 
+	height: 754px;
+	padding:5px;
+	margin:0 auto;
+	font-family: "Trebuchet MS", Trebuchet, Verdana, Arial, Helvetica, sans-serif;	
+	font-size: 76%;	
+}
+
+form#two p {
+	color:#333;
+	font-size:12px;
+}
+
+form#two fieldset {
+	width:430px; 
+	display:block; 
+	border:1px solid #b7ddf2; 
+	padding:5px; 
+	margin-bottom:0.5em; 
+	margin-left: 13px;
+	line-height:1.2em;
+}
+
+form#two fieldset#opt {
+	/*background:#ff6705;*/
+}
+
+form#two legend {
+	font-size:1.3em; 
+	font-weight:bold; 
+	color: #003399;
+	margin: 0 0 5px 10px; 
+	height: 24px;
+	line-height: 24px;
+	width:157px; 
+	border: 1px solid #b7ddf2;
+	background-color:#ebf4fb;
+	padding: 0 5px;
+}
+
+form#two label {
+	clear:left; 
+	display:block; 
+	float:left; 
+	width:100px; 
+	text-align:right; 
+	padding-right:10px; 
+	color: #003399; 
+	margin-bottom:0.5em;
+	font-size:13px;
+}
+
+form#two input {
+	border:1px solid #b7ddf2; 
+	padding:0 2px;; 
+	margin-bottom:0.3em;
+}
+
+form#two select {
+	margin-left:0.5em;
+}
+
+form#two textarea {
+	width:410px; 
+	height:auto;
+	border:1px solid #b7ddf2; 
+	padding:0.5em; 
+	overflow:auto; 
+}
+
+form#two option {
+	background:#003399; 
+	color:#fff;
+}
+
+form#two #button1 {
+    background-color: #CCCCCC;
+    border: medium none;
+    color: #003399;
+    display: inline;
+    font-size: 13px;
+    font-weight: bold;
+    height: 27px;
+    line-height: 27px;
+    margin-left: 15em;
+    text-align: center;
+    width: 95px;
+}
+
+form#two #button1:hover, form#two #button2:hover {
+	color:#FF6705;
+}
+
+p {
+	margin: 4px 0;
+}

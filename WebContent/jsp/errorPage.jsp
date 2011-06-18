@@ -1,4 +1,4 @@
-<jsp:include page="header.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/jsp-common/header.jsp"></jsp:include>
 
 	<%@ page isErrorPage="true" import="java.io.*" %>
 	
@@ -24,4 +24,4 @@
 		
 	</div> <!-- content -->
 	
-<jsp:include page="footer.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/jsp-common/footer.jsp"></jsp:include>

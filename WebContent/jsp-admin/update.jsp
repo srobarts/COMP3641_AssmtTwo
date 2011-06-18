@@ -1,4 +1,4 @@
-<jsp:include page="../jsp-unprotected/header.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/jsp-common/header.jsp"></jsp:include>
 
 <%@ page errorPage="/WEB-INF/jsp/errorPage.jsp" %>
 
@@ -32,4 +32,4 @@
 	
 </div>
 	
-<jsp:include page="../jsp-unprotected/footer.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/jsp-common/footer.jsp"></jsp:include>

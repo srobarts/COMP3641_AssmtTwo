@@ -4,12 +4,12 @@
   <display-name>Assignment2 - The Mammoth Address Book!</display-name>
   
   <welcome-file-list>
-    <welcome-file>home.html</welcome-file>
+    <welcome-file>home.jsp</welcome-file>
   </welcome-file-list>
 
   <servlet>
     <servlet-name>ControllerServlet</servlet-name>
-    <servlet-class>a00222500.assignment1.ControllerServlet</servlet-class>
+    <servlet-class>a00222500.assmt2.servlet.ControllerServlet</servlet-class>
     <init-param>
       <param-name>url</param-name>
       <param-value>jdbc:sqlserver://Beangrinder.bcit.ca</param-value>
@@ -34,7 +34,7 @@
   
   <servlet-mapping>
     <servlet-name>ControllerServlet</servlet-name>
-    <url-pattern>/query_database</url-pattern>
+    <url-pattern>/jsp-start/query_database</url-pattern>
   </servlet-mapping>
   
   <context-param>
@@ -72,12 +72,12 @@
   	<security-role>
     	<role-name>admin</role-name>
   	</security-role>
-	
-	<!-- Unprotected resources -->
+  	
+  	<!-- Resources only available to admin and user -->
 	<security-constraint>
     	<web-resource-collection>
-      		<web-resource-name>Unprotected</web-resource-name>
-      		<url-pattern>/jsp-unprotected/*</url-pattern>
+      		<web-resource-name>Start</web-resource-name>
+      		<url-pattern>/jsp-start/*</url-pattern>
     	</web-resource-collection>
     	<auth-constraint>
       		<role-name>user</role-name>
@@ -101,11 +101,22 @@
   	<security-constraint>
     	<web-resource-collection>
       		<web-resource-name>Admin</web-resource-name>
-      		<url-pattern>/jsp-admin/*</url-pattern>
+      		<url-pattern>/WEB-INF/jsp-admin/*</url-pattern>
     	</web-resource-collection>
     	<auth-constraint>
       		<role-name>admin</role-name>
     	</auth-constraint>
   	</security-constraint>
+  	
+  	<!-- Turn off invoker. Send requests 
+       to index.html. -->
+	<servlet>
+    	<servlet-name>NoInvoker</servlet-name>
+    	<servlet-class>a00222500.lab08.NoInvokerServlet</servlet-class>
+  	</servlet>
+  	<servlet-mapping>
+    	<servlet-name>NoInvoker</servlet-name>
+    	<url-pattern>/servlet/*</url-pattern>
+  	</servlet-mapping>
   
 </web-app>

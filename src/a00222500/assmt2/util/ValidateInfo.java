@@ -4,7 +4,11 @@ import java.util.regex.*;
 
 public class ValidateInfo
 {
-	public ValidateInfo(){
+	public static boolean isValidInput(String input, String pattern) {
+		Pattern patt = Pattern.compile(pattern);
+		Matcher match = patt.matcher(input);
+		
+		return match.matches();
 	}
 
 	public static boolean validateForm(StringBuffer errorMessages, String[] names, String[] values){

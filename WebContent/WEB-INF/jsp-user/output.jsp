@@ -1,6 +1,7 @@
-<jsp:include page="../jsp-unprotected/header.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/jsp-common/header.jsp"></jsp:include>
 
 <%@ page errorPage="/WEB-INF/jsp/errorPage.jsp" %>
+<%@ taglib uri="/WEB-INF/Assmt2_taglib.tld" prefix="assmt2" %>
 
 <div id="content">
 
@@ -8,8 +9,10 @@
 	
 	<div id="tabblock">
 		<form id="form" name="form" method="post" action="query_database">
-					<input type="radio" name="action" value="query"  />Query Again
-					<input type="radio" name="action" value="add"  />Add Record
+						<input type="radio" name="action" value="query"  />Query Again
+					<% if (request.isUserInRole("admin")) { %>
+						<input type="radio" name="action" value="add"  />Add Record
+					<% } %>
 			<button type="submit">Submit</button>
 		</form>
 	</div>
@@ -20,7 +23,7 @@
 		if(requestType.equals("query")) {
 	%>
 		<h2>${initParam.qmessage}</h2>
-		Query: <%= session.getAttribute("queryString") %>
+		<h3><em>Your Query: ${requestScope.queryString}</em></h3>
 	<%
 		} else if (requestType.equals("insert")) {
 	%>
@@ -41,8 +44,10 @@
 		if( insertStatus == null || insertStatus.equals("valid") ) {
 		//keep going - not all queries are inserts
 		%>
+			<!-- Output Query Results -->
 			<div id="tablecontent">
-				${sqlResult }
+				<assmt2:headertags headerNames="${requestScope.columnNames}" backgroundColor="tan"></assmt2:headertags>
+				<assmt2:rowtags rowData="${requestScope.results}" evenRowColor="tan" oddRowColor="white"></assmt2:rowtags>
 			</div>
 		<%	
 		//reset status to valid to reset variable
@@ -56,4 +61,4 @@
 		
 </div>
 	
-<jsp:include page="../jsp-unprotected/footer.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/jsp-common/footer.jsp"></jsp:include>

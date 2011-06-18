@@ -1,4 +1,4 @@
-<jsp:include page="../jsp-unprotected/header.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/jsp-common/header.jsp"></jsp:include>
 
 <%@ page errorPage="/WEB-INF/jsp/errorPage.jsp" %>
 
@@ -7,8 +7,10 @@
 	
 	<div id="tabblock">
 		<form id="form" name="form" method="post" action="query_database">
-					<input type="radio" name="action" value="query"  />Query
-					<input type="radio" name="action" value="add"  />Add Record
+						<input type="radio" name="action" value="query"  />Query
+					<% if (request.isUserInRole("admin")) { %>
+						<input type="radio" name="action" value="add"  />Add Record
+					<% } %>
 			<button type="submit">Submit</button>
 		</form>
 	</div>
@@ -110,4 +112,4 @@
 		<div class="clearing">&nbsp;</div>
 </div>
 
-<jsp:include page="../jsp-unprotected/footer.jsp"></jsp:include>
+<jsp:include page="/WEB-INF/jsp-common/footer.jsp"></jsp:include>
