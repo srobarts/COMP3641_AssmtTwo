@@ -176,7 +176,7 @@ public class ControllerServlet extends HttpServlet {
 			request.setAttribute("results", tableData);
 
 			dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/jsp-user/output.jsp");
-			dispatcher.include(request, response);
+			dispatcher.forward(request, response);
 			
 		} else if(requestedAction.equals("addrecord")) {
 			//user is requesting to add a new record to the database
@@ -223,11 +223,10 @@ public class ControllerServlet extends HttpServlet {
 				//display output to show that record has been created
 				String queryString = "SELECT * FROM a00222500_Members WHERE memberID = " + maxID;
 				System.out.println(queryString);
+				
 				db.setQueryString(queryString);
 				@SuppressWarnings("rawtypes")
 				Vector tableData = db.runQuery();
-				@SuppressWarnings("rawtypes")
-				Iterator rows = tableData.iterator();
 				
 				//display headers
 				@SuppressWarnings("rawtypes")
@@ -237,21 +236,17 @@ public class ControllerServlet extends HttpServlet {
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
-				@SuppressWarnings("rawtypes")
-				Iterator headers = headerNames.iterator();
 				
-				
-					//sqlResult = a00222500.assignment1.ServletUtilities.getTableHTML(headers, rows);
-					//TODO:  needs to be refactored
-
-				
-				//send results to results page
+				//set session variables for results page
 				session.setAttribute("requestType", "insert");
 				session.setAttribute("insertStatus", "valid");
-				session.setAttribute("queryString", queryString);
-				session.setAttribute("sqlResult", sqlResult);
-				String url2 = "/WEB-INF/jsp/output.jsp";
-				dispatcher = getServletContext().getRequestDispatcher(url2);
+				
+				//send results to results page
+				request.setAttribute("queryString", queryString);
+				request.setAttribute("columnNames", headerNames);
+				request.setAttribute("results", tableData);
+
+				dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/jsp-user/output.jsp");
 				dispatcher.forward(request, response);
 			
 			} else {
@@ -259,8 +254,7 @@ public class ControllerServlet extends HttpServlet {
 				System.out.println("invalid");
 				//display message saying that input was invalid
 				session.setAttribute("insertStatus", "invalid");
-				String url2 = "/WEB-INF/jsp/output.jsp";
-				dispatcher = getServletContext().getRequestDispatcher(url2);
+				dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/jsp-user/output.jsp");
 				dispatcher.forward(request, response);
 			}
 			
@@ -271,11 +265,11 @@ public class ControllerServlet extends HttpServlet {
 			
 			//get and display the record indicated by the memberID
 			String queryString = "SELECT * FROM a00222500_Members WHERE memberID = " + memberID;
+			
+			//query database
 			db.setQueryString(queryString);
 			@SuppressWarnings("rawtypes")
 			Vector tableData = db.runQuery();
-			@SuppressWarnings("rawtypes")
-			Iterator rows = tableData.iterator();
 			
 			//display headers
 			@SuppressWarnings("rawtypes")
@@ -285,18 +279,13 @@ public class ControllerServlet extends HttpServlet {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-			@SuppressWarnings("rawtypes")
-			Iterator headers = headerNames.iterator();
-			
-				//sqlResult = a00222500.assignment1.ServletUtilities.getUpdateTableHTML(headers, rows);
-				//TODO:  Needs to be refactored
-
 			
 			//send results to results page
-			session.setAttribute("queryString", queryString);
-			session.setAttribute("sqlResult", sqlResult);
-			String url2 = "/WEB-INF/jsp/update.jsp";
-			dispatcher = getServletContext().getRequestDispatcher(url2);
+			request.setAttribute("queryString", queryString);
+			request.setAttribute("columnNames", headerNames);
+			request.setAttribute("results", tableData);
+
+			dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/jsp-admin/update.jsp");
 			dispatcher.forward(request, response);
 			
 			

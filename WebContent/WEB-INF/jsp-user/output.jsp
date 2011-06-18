@@ -47,7 +47,13 @@
 			<!-- Output Query Results -->
 			<div id="tablecontent">
 				<assmt2:headertags headerNames="${requestScope.columnNames}" backgroundColor="tan"></assmt2:headertags>
+				<!-- add actions header tag if admin -->
+				<% if (request.isUserInRole("admin")) { %>
+				<th colspan="3">Actions</th></tr>				
+				<assmt2:adminrowtags rowData="${requestScope.results}" evenRowColor="tan" oddRowColor="white"></assmt2:adminrowtags>
+				<% } else { %>
 				<assmt2:rowtags rowData="${requestScope.results}" evenRowColor="tan" oddRowColor="white"></assmt2:rowtags>
+				<% } %>
 			</div>
 		<%	
 		//reset status to valid to reset variable

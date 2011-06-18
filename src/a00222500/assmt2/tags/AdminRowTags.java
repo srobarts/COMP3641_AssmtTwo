@@ -22,7 +22,7 @@ import javax.servlet.jsp.tagext.BodyTagSupport;
  *
  */
 
-public class RowTags extends BodyTagSupport {
+public class AdminRowTags extends BodyTagSupport {
 	private static final long serialVersionUID = 1L;
 	@SuppressWarnings("rawtypes")
 	private Vector rowData;
@@ -30,6 +30,7 @@ public class RowTags extends BodyTagSupport {
 	private int fieldCount = 0;
 	private String evenRowColor = "";
 	private String oddRowColor = "";
+	private String memberID = "";
 	
 	@SuppressWarnings("rawtypes")
 	public void setRowData(Object rowData) {
@@ -66,11 +67,22 @@ public class RowTags extends BodyTagSupport {
 				Iterator fields = singleRow.iterator();
 				while (fields.hasNext()) {
 					String field = (String)fields.next();
+					if(fieldCount == 1){ 
+						//if we are looking at the first field it is the memberID
+						memberID = field; 
+					}
 					out.print("<td>" + field + "</td>");
 					fieldCount++;
 				}
 				//reset field count
 				fieldCount = 1;
+				out.print("<form id=\"two\" name=\"form\" method=\"post\" action=\"query_database\">");
+				out.print("<td><input type=\"radio\" name=\"action\" value=\"modify\" checked=\"checked\" />Update</td>");
+				out.print("<td><input type=\"radio\" name=\"action\" value=\"delete\" />Delete</td>");
+				out.print("<input type=\"hidden\" name=\"memberID\" value=\"" + memberID + "\" />");
+				out.print("<td><button type=\"submit\">Submit</button></td>");
+				out.print("</form>");
+				out.print("</tr>");
 				count++;
 			}
 			out.print("</table>");

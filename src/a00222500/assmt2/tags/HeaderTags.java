@@ -48,7 +48,7 @@ public class HeaderTags extends BodyTagSupport {
 				String title = (String)headers.next();
 				out.print("<th>" + title + "</th>");
 			}
-			out.print("</tr>");
+			//out.print("</tr>");  -- not going to close out here - close out in jsp
 		} catch (IOException ioe) {
 			System.out.println("Error in tag: " + ioe);
 		}

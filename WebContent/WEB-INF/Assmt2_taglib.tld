@@ -46,5 +46,27 @@
       		<required>false</required>
     	</attribute>
   	</tag>
+  	
+  	<tag>
+    	<description>Displays row information from query returned for administrators</description>
+    	<name>adminrowtags</name>
+		<tag-class>a00222500.assmt2.tags.AdminRowTags</tag-class>
+		<body-content>JSP</body-content>
+		<attribute>
+      		<name>rowData</name>
+      		<required>true</required>
+      		<!-- rtexprvalue indicates whether attribute
+           		can be a JSP expression. -->
+      		<rtexprvalue>true</rtexprvalue>
+    	</attribute>
+    	<attribute>
+      		<name>oddRowColor</name>
+      		<required>false</required>
+    	</attribute>
+    	<attribute>
+      		<name>evenRowColor</name>
+      		<required>false</required>
+    	</attribute>
+  	</tag>
 
 </taglib>
