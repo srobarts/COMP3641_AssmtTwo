@@ -27,7 +27,6 @@ public class AdminRowTags extends BodyTagSupport {
 	@SuppressWarnings("rawtypes")
 	private Vector rowData;
 	private int count = 0;
-	private int fieldCount = 0;
 	private String evenRowColor = "";
 	private String oddRowColor = "";
 	private String memberID = "";
@@ -56,6 +55,7 @@ public class AdminRowTags extends BodyTagSupport {
 			Iterator rows = rowData.iterator();
 			
 			while (rows.hasNext()) {
+				int fieldCount = 1;
 				if (count % 2 == 0) {
 					out.print("<tr bgcolor=\"" + evenRowColor + "\">");
 				} else {
@@ -75,7 +75,6 @@ public class AdminRowTags extends BodyTagSupport {
 					fieldCount++;
 				}
 				//reset field count
-				fieldCount = 1;
 				out.print("<form id=\"two\" name=\"form\" method=\"post\" action=\"query_database\">");
 				out.print("<td><input type=\"radio\" name=\"action\" value=\"modify\" checked=\"checked\" />Update</td>");
 				out.print("<td><input type=\"radio\" name=\"action\" value=\"delete\" />Delete</td>");

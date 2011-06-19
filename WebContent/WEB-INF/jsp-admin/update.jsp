@@ -1,6 +1,7 @@
 <jsp:include page="/WEB-INF/jsp-common/header.jsp"></jsp:include>
 
 <%@ page errorPage="/WEB-INF/jsp/errorPage.jsp" %>
+<%@ taglib uri="/WEB-INF/Assmt2_taglib.tld" prefix="assmt2" %>
 
 <div id="content">
 	<h1>Update Record to Database</h1>
@@ -19,8 +20,8 @@
 		<form id="form" name="form" method="post" action="query_database" onSubmit="return submitIt(this)">
 		<input name="action" type="hidden" value="updaterecord" />
 		
-			<div>
-				${sqlResult }
+			<div id="tablecontent">
+				<assmt2:updatetags rowData="${requestScope.results}"></assmt2:updatetags>
 			</div>
 			
 			<button type="submit">Submit</button>

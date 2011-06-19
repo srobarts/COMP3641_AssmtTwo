@@ -2,7 +2,6 @@ package a00222500.assmt2.servlet;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Iterator;
 import java.util.Vector;
 
 import javax.servlet.RequestDispatcher;
@@ -70,7 +69,7 @@ public class ControllerServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		session.setAttribute("requestType", "query");
 		session.setAttribute("insertStatus", "valid");
-		String sqlResult = "";	
+		//String sqlResult = "";	
 		String url = "/jsp-start/start.jsp";
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
 		
@@ -303,12 +302,8 @@ public class ControllerServlet extends HttpServlet {
 			//tuck away into database
 			db.updateRecord(id, firstName, lastName, address, city, country, code, phoneNumber, email);			
 			
-			//display output to show that record has been updated
-			//re-display page with same query as previous
 			@SuppressWarnings("rawtypes")
 			Vector tableData = db.runQuery();
-			@SuppressWarnings("rawtypes")
-			Iterator rows = tableData.iterator();
 			
 			//display headers
 			@SuppressWarnings("rawtypes")
@@ -318,23 +313,17 @@ public class ControllerServlet extends HttpServlet {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-			@SuppressWarnings("rawtypes")
-			Iterator headers = headerNames.iterator();
 			
-			
-				//sqlResult = a00222500.assignment1.ServletUtilities.getTableHTML(headers, rows);
-				//TODO:  needs to be refactored
-
-			
-			//send results to results page
+			//set session variables for results page
 			session.setAttribute("requestType", "update");
 			session.setAttribute("insertStatus", "valid");
-			String queryString = db.getQueryString();
-			session.setAttribute("queryString", queryString);
-			session.setAttribute("sqlResult", sqlResult);
-			String url2 = "/WEB-INF/jsp/output.jsp";
-			dispatcher = getServletContext().getRequestDispatcher(url2);
-			dispatcher.forward(request, response);			
+			
+			//send results to results page
+			request.setAttribute("columnNames", headerNames);
+			request.setAttribute("results", tableData);
+
+			dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/jsp-user/output.jsp");
+			dispatcher.forward(request, response);
 			
 		} else if(requestedAction.equals("delete")) {
 			int memberID = Integer.parseInt(request.getParameter("memberID"));
@@ -342,11 +331,8 @@ public class ControllerServlet extends HttpServlet {
 			//delete the record indicated by the memberID
 			db.deleteRecord(memberID);
 			
-			//re-display page with same query as previous
 			@SuppressWarnings("rawtypes")
 			Vector tableData = db.runQuery();
-			@SuppressWarnings("rawtypes")
-			Iterator rows = tableData.iterator();
 			
 			//display headers
 			@SuppressWarnings("rawtypes")
@@ -356,22 +342,16 @@ public class ControllerServlet extends HttpServlet {
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-			@SuppressWarnings("rawtypes")
-			Iterator headers = headerNames.iterator();
-			
-			
-				//sqlResult = a00222500.assignment1.ServletUtilities.getTableHTML(headers, rows);
-				//TODO: needs to be refactored
-			
 			
 			//send results to results page
 			session.setAttribute("requestType", "delete");
 			session.setAttribute("insertStatus", "valid");
-			String queryString = db.getQueryString();
-			session.setAttribute("queryString", queryString);
-			session.setAttribute("sqlResult", sqlResult);
-			String url2 = "/WEB-INF/jsp/output.jsp";
-			dispatcher = getServletContext().getRequestDispatcher(url2);
+			
+			//send results to results page
+			request.setAttribute("columnNames", headerNames);
+			request.setAttribute("results", tableData);
+
+			dispatcher = getServletContext().getRequestDispatcher("/WEB-INF/jsp-user/output.jsp");
 			dispatcher.forward(request, response);
 			
 		}

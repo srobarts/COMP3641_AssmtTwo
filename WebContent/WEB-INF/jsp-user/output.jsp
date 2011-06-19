@@ -25,15 +25,15 @@
 		<h2>${initParam.qmessage}</h2>
 		<h3><em>Your Query: ${requestScope.queryString}</em></h3>
 	<%
-		} else if (requestType.equals("insert")) {
+		} else if (requestType.equals("insert") && request.isUserInRole("admin")) {
 	%>
 		<h2>${initParam.imessage}</h2>
 	<%	
-		} else if (requestType.equals("update")) {
+		} else if (requestType.equals("update") && request.isUserInRole("admin")) {
 	%>
 		<h2>${initParam.updatemessage}</h2>
 	<% 
-		} else if (requestType.equals("delete")) {
+		} else if (requestType.equals("delete") && request.isUserInRole("admin")) {
 	%>
 		<h2>${initParam.deletemessage}</h2><br />
 	<% } %>
