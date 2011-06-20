@@ -15,13 +15,21 @@
 			<img class="header_image" src="./images/Mammoth-Happy-icon.png" />
 			<span class="header_text">Mammoth Address Book</span>
 		</div>
-
+		
 	<div id="homecontent">
 		<h1>Welcome to the Mammoth Address Book!</h1>
 		<h3>A book big enough for all the addresses you can throw at it - 
 		and it never forgets!</h3>
-		
 		<br />
+	
+		<h3>View Translated About Page:</h3>
+			<form action="translate" method="post">
+			English <input type="radio" name="lang" value="English" checked>
+			Deutsch <input type="radio" name="lang" value="German">
+			<input type="submit" value="Continue">
+		</form>
+	
+		<br /><br />
 		<h1><a href="./jsp-start/start.jsp">Access Database</a></h1>
 		<br /><br />
 	</div>
@@ -29,6 +37,7 @@
 		<div class="clear"></div>
 		
 		<div id="footer">
+			<div id="footer_links"><a href="/index.html">Start Page</a>&nbsp;|&nbsp;<a href="/about.jsp">About</a></div>
 			<p>Copyright &copy;2011 Scott Robarts, COMP 3641</p>
 		</div>
 	
