@@ -15,6 +15,7 @@
 					<% } %>
 			<button type="submit">Submit</button>
 		</form>
+		<h3><a href="logout">Logout</a></h3>
 	</div>
 
 	<!--  Output result messaging: -->

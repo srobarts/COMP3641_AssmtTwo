@@ -4,6 +4,11 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<%
+response.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
+response.setHeader("Pragma", "no-cache");
+response.setDateHeader("Expires", -1); 
+%>
 <link rel="stylesheet" type="text/css" href="../styles/styles.css" >
 <title>Java Address Book</title>
 
@@ -56,9 +61,10 @@
 	
 	<div id="wrapper">
 		<div id="header">
-			<img class="header_image" src="" />
+			<img class="header_image" src="../images/Mammooth-icon.png" />
 			<span class="header_text">Mammoth Address Book</span>
 		</div>
+		
 		
 		
 		

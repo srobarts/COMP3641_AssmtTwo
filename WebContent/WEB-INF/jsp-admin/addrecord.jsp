@@ -11,6 +11,7 @@
 					<input type="radio" name="action" value="add"  />Add Record
 			<button type="submit">Submit</button>
 		</form>
+		<h3><a href="logout">Logout</a></h3>
 	</div>
 	
 	<h2>Please fill in the form below to add to database:</h2>

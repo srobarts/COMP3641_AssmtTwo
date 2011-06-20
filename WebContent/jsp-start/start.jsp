@@ -15,7 +15,7 @@
 				<div id="radioblock">
 					
 					<div id="left_float">
-						<img src="../images/system-search.png" /><input type="radio" name="action" value="query"  />Query Records
+						<img src="../images/system-search.png" /><input type="radio" name="action" value="query" selected="selected"  />Query Records
 					</div>
 					
 					<% if (request.isUserInRole("admin")) { %>

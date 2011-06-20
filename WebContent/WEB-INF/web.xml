@@ -4,7 +4,7 @@
   <display-name>Assignment2 - The Mammoth Address Book!</display-name>
   
   <welcome-file-list>
-    <welcome-file>home.jsp</welcome-file>
+    <welcome-file>index.html</welcome-file>
   </welcome-file-list>
 
   <servlet>
@@ -108,11 +108,21 @@
     	</auth-constraint>
   	</security-constraint>
   	
+  	<!-- Servlet to logout the user. -->
+  	<servlet>
+    	<servlet-name>Logout</servlet-name>
+    	<servlet-class>a00222500.assmt2.logout.LogoutServlet</servlet-class>
+  	</servlet>
+  	<servlet-mapping>
+    	<servlet-name>Logout</servlet-name>
+    	<url-pattern>/jsp-start/logout</url-pattern>
+  	</servlet-mapping>
+  	
   	<!-- Turn off invoker. Send requests 
        to index.html. -->
 	<servlet>
     	<servlet-name>NoInvoker</servlet-name>
-    	<servlet-class>a00222500.lab08.NoInvokerServlet</servlet-class>
+    	<servlet-class>a00222500.assmt2.servlet.NoInvokerServlet</servlet-class>
   	</servlet>
   	<servlet-mapping>
     	<servlet-name>NoInvoker</servlet-name>
