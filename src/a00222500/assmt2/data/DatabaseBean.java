@@ -1,10 +1,10 @@
 package a00222500.assmt2.data;
 
 import java.sql.*;
-import java.util.Vector;
+import java.util.*;
 
-public class DatabaseBean {
-
+public class DatabaseBean
+{
 	private String queryString = "";
 	private Connection con = null;
 	private Statement stmt = null;
@@ -75,61 +75,6 @@ public class DatabaseBean {
 			ex.printStackTrace();
 		}
 	}
-
-	public String getQueryString()
-	{
-		return queryString;
-	}
-
-	public void setQueryString(String qs)
-	{
-		queryString = qs;
-	}
-
-	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public Vector runQuery()
-	{
-		vRows = new Vector();
-		int numCols;
-
-		try {
-			stmt = con.createStatement();
-
-			queryResults = stmt.executeQuery (queryString);
-			ResultSetMetaData meta = queryResults.getMetaData();
-			numCols = meta.getColumnCount();
-
-			while (queryResults.next()) {
-				Vector vOneRow = new Vector();
-				for (int ndx=1; ndx<=numCols; ndx++) {
-					vOneRow.addElement(queryResults.getString(ndx));
-				}
-				vRows.addElement(vOneRow);
-			}
-
-		} catch(SQLException ex) {
-			ex.printStackTrace();
-		} 
-		return vRows;
-	}
-
-	@SuppressWarnings({ "rawtypes", "unchecked" })
-	public Vector generateMetaData() throws SQLException {
-
-		ResultSetMetaData rsmd = queryResults.getMetaData();
-		int columnCount = rsmd.getColumnCount();
-
-		headers = new Vector();
-        for ( int i = 1; i <= columnCount; i++) {
-			headers.add(rsmd.getColumnName(i));
-        }
-        return headers;
-	}
-	
-	public void setResultSet(ResultSet rs)
-	{
-		queryResults = rs;
-	}
 	
 	public String create_table_query()
 	{
@@ -162,47 +107,43 @@ public class DatabaseBean {
 		}
 		
 	}
-	
-	public void insertRecord(String query) {
-		try {
-			stmt = con.createStatement();
-			stmt.execute(query);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+
+	public String getQueryString()
+	{
+		return queryString;
 	}
-	
-	public void updateRecord(int id, String firstName, String lastName, String address, 
-			String city, String country, String code, String phoneNumber, String email) {
-			
-			//create update statement
-			try {
-				stmt = con.createStatement();
-				String update_query = "UPDATE a00222500_Members" +
-									" SET firstName = '" + firstName + "'" + 
-									", lastName = '" + lastName + "'" +
-									", address = '" + address + "'" +
-									", city = '" + city + "'" +
-									", country = '" + country + "'" +
-									", code = '" + code + "'" +
-									", phoneNumber = '" + phoneNumber + "'" +
-									", email = '" + email + "'" +
-									" WHERE memberID = " + id;
-				System.out.println(update_query);
-				stmt.executeUpdate(update_query);
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}	
+
+	public void setQueryString(String qs)
+	{
+		queryString = qs;
 	}
-	
-	public void deleteRecord(int memberID) {
+
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	public Vector runQuery()
+	{
+		vRows = new Vector();
+		int numCols;
+
 		try {
+			System.out.print(con);
 			stmt = con.createStatement();
-			stmt.executeUpdate("DELETE FROM a00222500_Members WHERE memberID = " + memberID);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		
+
+			queryResults = stmt.executeQuery (queryString);
+			ResultSetMetaData meta = queryResults.getMetaData();
+			numCols = meta.getColumnCount();
+
+			while (queryResults.next()) {
+				Vector vOneRow = new Vector();
+				for (int ndx=1; ndx<=numCols; ndx++) {
+					vOneRow.addElement(queryResults.getString(ndx));
+				}
+				vRows.addElement(vOneRow);
+			}
+
+		} catch(SQLException ex) {
+			ex.printStackTrace();
+		} 
+		return vRows;
 	}
 	
 	public int getMaxID() {
@@ -221,6 +162,66 @@ public class DatabaseBean {
 		}
 		return maxID;
 	}
+	
+	public void insertRecord(String query) {
+		try {
+			stmt = con.createStatement();
+			stmt.execute(query);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void updateRecord(int id, String firstName, String lastName, String address, 
+		String city, String country, String code, String phoneNumber, String email) {
+		
+		//create update statement
+		try {
+			stmt = con.createStatement();
+			String update_query = "UPDATE a00222500_Members" +
+								" SET firstName = '" + firstName + "'" + 
+								", lastName = '" + lastName + "'" +
+								", address = '" + address + "'" +
+								", city = '" + city + "'" +
+								", country = '" + country + "'" +
+								", code = '" + code + "'" +
+								", phoneNumber = '" + phoneNumber + "'" +
+								", email = '" + email + "'" +
+								" WHERE memberID = " + id;
+			System.out.println(update_query);
+			stmt.executeUpdate(update_query);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}	
+	}
+	
+	public void deleteRecord(int memberID) {
+		try {
+			stmt = con.createStatement();
+			stmt.executeUpdate("DELETE FROM a00222500_Members WHERE memberID = " + memberID);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+	}
+
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	public Vector generateMetaData() throws SQLException {
+
+		ResultSetMetaData rsmd = queryResults.getMetaData();
+		int columnCount = rsmd.getColumnCount();
+
+		headers = new Vector();
+        for ( int i = 1; i <= columnCount; i++) {
+			headers.add(rsmd.getColumnName(i));
+        }
+        return headers;
+	}
+	
+	public void setResultSet(ResultSet rs)
+	{
+		queryResults = rs;
+	}
 
 	public void cleanUp()
 	{
@@ -232,4 +233,5 @@ public class DatabaseBean {
 		}
 	}
 }
+
 
