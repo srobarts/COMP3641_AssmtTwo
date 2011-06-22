@@ -131,6 +131,11 @@ img.header_image {
 	padding-right:15px;
 }
 
+#homecontent p.bigtext {
+	font-size:3.0em;
+	color:#A60000;
+}
+
 
 
 /* ---------- Error Output -------- */

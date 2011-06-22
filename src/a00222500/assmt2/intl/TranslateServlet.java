@@ -30,14 +30,15 @@ public class TranslateServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String lang = request.getParameter("lang");
-		Locale locale = new Locale("de", "DE");
 		HttpSession session = request.getSession();
-		
-		if (lang == null) {
-		   //set to default of Canadian english
-		   locale=Locale.CANADA;
+		Locale locale = new Locale("en", "CA"); //initialize
+		if(request.getParameter("lang") == null){
+			//no lang - check session
+			if(session.getAttribute("myLocale") != null){
+				locale = (Locale) session.getAttribute("myLocale");
+			}
 		} else {
+			String lang = request.getParameter("lang");
 			if (lang.equals("German")) {
 		       locale = new Locale("de", "DE");
 		    } else if (lang.equals("English")) {
@@ -45,15 +46,61 @@ public class TranslateServlet extends HttpServlet {
 		    } else {
 		         locale = new Locale("en", "CA");
 		    }
-		    session.setAttribute("myLocale",locale);
-		    ResourceBundle bundle = ResourceBundle.getBundle("Message",locale);
-		    String page_title = bundle.getString("page_title");
-		    session.setAttribute("page_title", page_title);
-		    
-		    
-		    
-		    
 		}
+	    session.setAttribute("myLocale",locale);
+	    ResourceBundle bundle = ResourceBundle.getBundle("Message",locale);
+	    
+	    //page_title
+	    String page_title = bundle.getString("page_title");
+	    session.setAttribute("page_title", page_title);
+	    
+	    //header_text
+	    String header_text = bundle.getString("header_text");
+	    session.setAttribute("header_text", header_text);
+	    
+	    //welcome
+	    String welcome = bundle.getString("welcome");
+	    session.setAttribute("welcome", welcome);
+	    
+	    //intro1
+	    String intro_sentence1 = bundle.getString("intro_sentence1");
+	    session.setAttribute("intro_sentence1", intro_sentence1);
+	    
+	    //intro2
+	    String intro_sentence2 = bundle.getString("intro_sentence2");
+	    session.setAttribute("intro_sentence2", intro_sentence2);
+	    
+	    //supported
+	    String supported_ops = bundle.getString("supported_ops");
+	    session.setAttribute("supported_ops", supported_ops);
+	    
+	    //search
+	    String search = bundle.getString("search");
+	    session.setAttribute("search", search);
+	    
+	    //add
+	    String add = bundle.getString("add");
+	    session.setAttribute("add", add);
+	    
+	    //update
+	    String update = bundle.getString("update");
+	    session.setAttribute("update", update);
+	    
+	    //delete
+	    String delete = bundle.getString("delete");
+	    session.setAttribute("delete", delete);
+	    
+	    //start_page
+	    String start_page = bundle.getString("start_page");
+	    session.setAttribute("start_page", start_page);
+	    
+	    //about_page
+	    String about_page = bundle.getString("about_page");
+	    session.setAttribute("about_page", about_page);   
+	    
+	    //copyright
+	    String copyright = bundle.getString("copyright");
+	    session.setAttribute("copyright", copyright);
 		
 		//forward to about.jsp page
 		String url = "/about.jsp";

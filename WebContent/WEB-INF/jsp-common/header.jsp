@@ -9,7 +9,7 @@ response.setHeader("Cache-Control", "no-store, no-cache, must-revalidate");
 response.setHeader("Pragma", "no-cache");
 response.setDateHeader("Expires", -1); 
 %>
-<link rel="stylesheet" type="text/css" href="../styles/styles.css" >
+<link rel="stylesheet" type="text/css" href="./styles/styles.css" >
 <title>Java Address Book</title>
 
 	<SCRIPT language="javascript" type="text/javascript"> 
@@ -38,9 +38,6 @@ response.setDateHeader("Expires", -1);
 			if(myForm.code.value == ""){
 				errMsg = errMsg + "Please fill in your postal code\n";
 			}
-			if (!regexp.test(myForm.phoneNumber.value)) {
-				errMsg = errMsg + "Your phone number has been incorrectly formatted\nshould be in form 604-555-1212\n";
-			}
 			if (!re.test(myForm.email.value)) {
 				errMsg = errMsg + "Your email address has been incorrectly formatted\nshould be in form name@server.com\n";
 			}
@@ -61,9 +58,10 @@ response.setDateHeader("Expires", -1);
 	
 	<div id="wrapper">
 		<div id="header">
-			<img class="header_image" src="../images/Mammooth-icon.png" />
+			<img class="header_image" src="./images/Mammooth-icon.png" />
 			<span class="header_text">Mammoth Address Book</span>
 		</div>
+	
 		
 		
 		

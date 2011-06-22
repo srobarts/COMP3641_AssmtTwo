@@ -1,0 +1,15 @@
+README
+
+1.  Start page is index.jsp.  Example:  http://localhost:8080/Assignment2/index.jsp, or just http://localhost:8080/Assignment2/
+2.  Users can toggle language of the About file from the index.jsp page
+3.  There are two grades of users:
+
+	username: user
+	password: user
+	 - this user can only query the database
+	 
+	username: admin
+	password: admin
+	 - this user has full read/write access to the database
+	 
+	 

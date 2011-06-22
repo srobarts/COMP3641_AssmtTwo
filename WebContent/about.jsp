@@ -14,31 +14,30 @@ response.setDateHeader("Expires", -1);
 <title>Mammoth Address Book</title>
 
 <body>
-
 	<div id="wrapper">
 		<div id="header">
 			<img class="header_image" src="./images/Mammoth-Happy-icon.png" />
-			<span class="header_text">Mammoth Address Book</span>
+			<span class="header_text"><%= session.getAttribute("header_text") %></span>
 		</div>
 
 		<div id="content">
 		<!-- do this with requests a EL instead of this -->
-			<h1><%= session.getAttribute("page_title") %></h1> 
+			<h1><%= session.getAttribute("page_title") %></h1>
 			<br />
-			<h2>Welcome to the Mammoth Address Book!</h2>
-			<p>This application will allow you to manage one of the tables of the Mammoth Address Book (at least in this version).</p>
-			<h3>Click the Start Page link below to proceed with searching records or adding a record.</h3>
-			<p>The following operations are currently supported:</p>
+			<h2><%= session.getAttribute("welcome") %></h2>
+			<p><%= session.getAttribute("intro_sentence1") %></p>
+			<h3><%= session.getAttribute("intro_sentence2") %></h3>
+			<p><%= session.getAttribute("supported_ops") %></p>
 			<div class="left_float">
 				<ul>
-					<li><img src="images/system-search.png" />Search Records</li>
-					<li><img src="images/document-new.png" />Add a Record</li>		
+					<li><img src="images/system-search.png" /><%= session.getAttribute("search") %></li>
+					<li><img src="images/document-new.png" /><%= session.getAttribute("add") %></li>		
 				</ul>
 			</div>
 			<div class="left_float">
 				<ul>
-					<li><img src="images/document-edit.png" />Update a Record</li>
-					<li><img src="images/edit-delete.png" />Delete a Record</li>			
+					<li><img src="images/document-edit.png" /><%= session.getAttribute("update") %></li>
+					<li><img src="images/edit-delete.png" /><%= session.getAttribute("delete") %></li>			
 				</ul>
 			</div>
 		</div>
@@ -46,8 +45,9 @@ response.setDateHeader("Expires", -1);
 		<div class="clear"></div>
 		
 		<div id="footer">
-			<div id="footer_links"><a href="/index.html">Start Page</a>&nbsp;|&nbsp;<a href="/about.jsp">About</a></div>
-			<p>Copyright &copy;2011 Scott Robarts, COMP 3641</p>
+			<div id="footer_links"><a href="./index.jsp"><%= session.getAttribute("start_page") %></a>
+			 | <a href="./about.jsp"><%= session.getAttribute("about_page") %></a></div>
+			<p><%= session.getAttribute("copyright") %> &copy;2011 Scott Robarts, COMP 3641</p>
 		</div>
 	
 	</div> <!-- wrapper div close -->

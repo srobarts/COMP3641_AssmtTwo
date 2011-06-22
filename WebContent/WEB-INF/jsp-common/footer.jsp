@@ -2,7 +2,14 @@
 		<div class="clear"></div>
 		
 		<div id="footer">
-			<div id="footer_links"><a href="/index.html">Start Page</a>&nbsp;|&nbsp;<a href="/about.jsp">About</a></div>
+			<form action="translate" method="post">
+				<input type="submit" value="Go To About">
+			</form>
+			<form action="query_database" method="post">
+				<input type="hidden" name="action" value="start" />
+				<input type="submit" value="Go To Start" />
+			</form>
+		
 			<p>Copyright &copy;2011 Scott Robarts, COMP 3641</p>
 		</div>
 	

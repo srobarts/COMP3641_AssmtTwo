@@ -23,7 +23,6 @@ import a00222500.assmt2.data.*;
 public class ControllerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private DatabaseBean db;
-	private final String REG_PHONE = "(\\()?(\\d{3})(\\))?([\\.\\-\\/ ])?(\\d{3})([\\.\\-\\/ ])?(\\d{4})";
 	private final String REG_EMAIL = "(\\w)([\\.-]?\\w+)*@(\\w+)([\\.-]?\\w+)*(\\.\\w{2,3})";
 	private final String REG_STRING = "^[a-zA-Z' ]{1,40}$";
        
@@ -59,24 +58,33 @@ public class ControllerServlet extends HttpServlet {
 		//create table if not exists
 		String create_table_query = db.create_table_query();
 		db.create_table(create_table_query);
+		
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		HttpSession session = request.getSession();	
+		
 		//initialize session variables
-		HttpSession session = request.getSession();
 		session.setAttribute("requestType", "query");
 		session.setAttribute("insertStatus", "valid");
 		//String sqlResult = "";	
-		String url = "/jsp-start/start.jsp";
+		String url = "/WEB-INF/jsp-user/start.jsp";
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
 		
 		String requestedAction = request.getParameter("action");
-		//System.out.println("requestedAction: " + requestedAction);
-		if(requestedAction == null) {
-			//request null - just stay put			
+		System.out.println("requestedAction: " + requestedAction);
+		if(requestedAction.equals("start")) {
+			url = "/index.jsp";
+			dispatcher = getServletContext().getRequestDispatcher(url);
+			dispatcher.forward(request, response);
+		} else if(requestedAction.equals("login")) {
+			url = "/start.jsp";
+			dispatcher = getServletContext().getRequestDispatcher(url);
+			dispatcher.forward(request, response);	
 		} else if(requestedAction.equals("query")) {
 			//query the database - send the user back to the view (query.jsp)
 			url = "/WEB-INF/jsp-user/query.jsp";
@@ -191,8 +199,7 @@ public class ControllerServlet extends HttpServlet {
 			String phoneNumber = request.getParameter("phoneNumber");
 			String email = request.getParameter("email");
 			
-			if( ValidateInfo.isValidInput(phoneNumber, REG_PHONE) && 
-					ValidateInfo.isValidInput(email, REG_EMAIL) &&
+			if( ValidateInfo.isValidInput(email, REG_EMAIL) &&
 						ValidateInfo.isValidInput(firstName, REG_STRING) &&
 							ValidateInfo.isValidInput(lastName, REG_STRING) &&
 								ValidateInfo.isValidInput(city, REG_STRING) &&
